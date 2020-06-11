@@ -96,9 +96,9 @@ const std::array<const std::string, 3> Game::words{ { "control", "television", "
 
 int main()
 {
-	Game game;
+	/*Game game;
 	do {
 		game.Draw();
-	} while (game.Update());
+	} while (game.Update());*/
 	return EXIT_SUCCESS;
 }
