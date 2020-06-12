@@ -4,8 +4,8 @@ using namespace std;
 
 int main(){
 
-    Hangman hm;
-    hm.playGame("continuous delivery");
+    //Hangman hm;
+    //hm.playGame("continuous delivery");
 
     return EXIT_SUCCESS;
 }
