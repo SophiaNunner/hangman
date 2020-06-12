@@ -1,0 +1,11 @@
+# docker container for developers (includes src code)
+FROM sophianunner/hangman:basic AS devBuild
+WORKDIR /
+COPY CMakeLists.txt main ./
+RUN cmake . && make
+
+# docker container for end-users (no source code, only running binary)
+FROM base AS cusBuild
+WORKDIR /opt/Hangman
+COPY --from=base /main/Hangman ./
+CMD ["./Hangman"]

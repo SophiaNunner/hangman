@@ -1,18 +1,5 @@
-FROM ubuntu:bionic AS base
+FROM ubuntu:bionic
 ENV DEBIAN_FRONTEND=nonintercative
 ENV TZ=Europe/Vienna
-
 RUN apt-get update && \
 	apt-get install -y build-essential git cmake autoconf libtool pkg-config
-
-# docker container for developers (includes src code)
-FROM base AS devBuild
-WORKDIR /
-COPY CMakeLists.txt main ./
-RUN cmake . && make
-
-# docker container for end-users (no source code, only running binary)
-FROM base AS cusBuild
-WORKDIR /opt/Hangman
-COPY --from=base /main/Hangman ./
-CMD ["./Hangman"]
