@@ -1,11 +1,17 @@
 # docker container for developers (includes src code)
 FROM sophianunner/hangman:basic AS devBuild
-WORKDIR /
+RUN mkdir /src
+WORKDIR /src
 COPY CMakeLists.txt main ./
-RUN cmake . && make
+RUN ls
+RUN mkdir build
+RUN cd build
+RUN cmake ..
+RUN make
+#RUN cmake . && make
 
 # docker container for end-users (no source code, only running binary)
 FROM ubuntu:bionic AS cusBuild
 WORKDIR /opt/Hangman
-COPY --from=devBuild /main/Hangman ./
+COPY --from=devBuild /src/main/Hangman ./
 CMD ["./Hangman"]
