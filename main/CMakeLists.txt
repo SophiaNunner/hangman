@@ -1,3 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
 
-add_executable(Hangman Hangman.cpp)
+file(GLOB SOURCES "*.cpp")
+
+add_executable(Hangman ${SOURCES})
