@@ -6,11 +6,15 @@
 class Hangman 
 {
 public:
-    Hangman() = default;
+    Hangman(bool output = true);
 
-    void playGame(std::string const& word);
+    bool playGame(std::string const& word);
+    bool manualGame(std::string const& word);
     bool makeGuess(char const c);
     void reset();
+
+    size_t getErrors() const;
+    std::string getGuess() const;
 
 private:
 
@@ -22,6 +26,7 @@ private:
     std::string word;
     std::string guess;
     size_t errors;
+    bool output;
 };
 
 #endif

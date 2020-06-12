@@ -3,7 +3,16 @@
 #include <algorithm>
 #include <iostream>
 
-void Hangman::playGame(std::string const& word){
+Hangman::Hangman(bool output){
+    this->output = output;
+    reset();
+}
+
+bool Hangman::playGame(std::string const& word){
+    if(word == ""){
+        return false;
+    }
+    
     this->word = word;
     this->guess = std::string(word.length(), '_');
     this->errors = 0;
@@ -12,6 +21,27 @@ void Hangman::playGame(std::string const& word){
     do{
         draw();
     } while(makeGuess(tolower(std::getchar())));
+
+    bool won = true;
+    if(errors >= 6){
+        won = false;
+    }
+
+    reset();
+    return won;
+}
+
+bool Hangman::manualGame(std::string const& word) {
+    if(word == ""){
+        return false;
+    }
+
+    this->word = word;
+    this->guess = std::string(word.length(), '_');
+    this->errors = 0;
+    this->body = std::string(7, '\0');
+
+    return true;
 }
 
 bool Hangman::makeGuess(char const letter) {
@@ -29,14 +59,18 @@ bool Hangman::makeGuess(char const letter) {
 	}
 
     if(!letterRight && !increament()){
-        draw();
-        std::puts("#### you lose! ####");
+	if(output){
+           draw();
+           std::puts("#### you lose! ####");
+	}
         return false;
     }
     else if(letterRight && word == guess){
-        draw();
-        std::puts("#### you win! ####");
-        return false;
+	if(output){        
+	   draw();
+           std::puts("#### you win! ####");
+	}        
+	return false;
     }
 
     return true;
@@ -46,6 +80,15 @@ void Hangman::reset() {
     this->word = "";
     this->guess = "";
     this->errors = 0;
+    this->body = std::string(7, '\0');
+}
+
+size_t Hangman::getErrors() const {
+    return this->errors;
+}
+
+std::string Hangman::getGuess() const {
+    return this->guess;
 }
 
 bool Hangman::increament() {
@@ -70,7 +113,7 @@ void Hangman::draw() const {
 
     drawGallow();
     std::for_each(guess.begin(), guess.end(), [](const char c) { std::printf("%c ", c); });
-	std::putchar('\n');
+    std::putchar('\n');
 }
 
 void Hangman::drawGallow() const {
