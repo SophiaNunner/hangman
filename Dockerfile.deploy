@@ -5,7 +5,7 @@ COPY CMakeLists.txt main ./
 RUN cmake . && make
 
 # docker container for end-users (no source code, only running binary)
-FROM base AS cusBuild
+FROM ubuntu:bionic AS cusBuild
 WORKDIR /opt/Hangman
 COPY --from=base /main/Hangman ./
 CMD ["./Hangman"]
