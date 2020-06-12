@@ -7,8 +7,8 @@ COPY CMakeLists.txt ./
 COPY main ./main
 RUN ls
 RUN mkdir build
-RUN cd build
-RUN cmake ..
+RUN cd build && cmake ..
+#RUN cmake .
 RUN make
 #RUN cmake . && make
 
