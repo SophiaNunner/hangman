@@ -2,7 +2,9 @@
 FROM sophianunner/hangman:basic AS devBuild
 RUN mkdir /src
 WORKDIR /src
-COPY CMakeLists.txt main ./
+RUN mkdir main
+COPY CMakeLists.txt ./
+COPY main ./main
 RUN ls
 RUN mkdir build
 RUN cd build
