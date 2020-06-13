@@ -11,8 +11,9 @@ RUN mkdir lib
 RUN cd lib && git clone https://github.com/google/googletest
 RUN ls
 RUN mkdir build
-RUN cd build && cmake ..
+RUN cd build && CXX="g++" cmake ..
 RUN cd build && make
+RUN ls
 
 # docker container for end-users (no source code, only running binary)
 FROM ubuntu:bionic AS cusBuild
