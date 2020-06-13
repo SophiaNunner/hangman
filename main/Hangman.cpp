@@ -38,6 +38,7 @@ bool Hangman::manualGame(std::string const& word) {
     }
 
     this->word = word;
+    transform(this->word.begin(), this->word.end(), this->word.begin(), ::toupper);
     this->guess = std::string(word.length(), '_');
     this->errors = 0;
     this->body = std::string(7, '\0');
@@ -50,11 +51,12 @@ bool Hangman::makeGuess(char const letter) {
         return true;
     }
     bool letterRight = false;
+    char letterUpper = toupper(letter);
 
     //check if the word contains the letter
 	for (size_t i = 0; i < word.size(); ++i) {
-		if (word[i] == toupper(letter)) {
-			guess[i] = letter;
+		if (word[i] == letterUpper) {
+			guess[i] = letterUpper;
 			letterRight = true;
 		}
 	}

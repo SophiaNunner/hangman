@@ -44,7 +44,7 @@ TEST_F(HangmanTest, rightGuess){
     ASSERT_EQ(mpObj->manualGame("test"), true);
     ASSERT_EQ(mpObj->makeGuess('t'), true);
     ASSERT_EQ(mpObj->getErrors(), 0);
-    ASSERT_EQ(mpObj->getGuess(), "t__t");
+    ASSERT_EQ(mpObj->getGuess(), "T__T");
 }
 
 TEST_F(HangmanTest, wrongGuess){
@@ -60,7 +60,7 @@ TEST_F(HangmanTest, win){
     ASSERT_EQ(mpObj->makeGuess('e'), true);
     ASSERT_EQ(mpObj->makeGuess('s'), false);
     ASSERT_EQ(mpObj->getErrors(), 0);
-    ASSERT_EQ(mpObj->getGuess(), "test");
+    ASSERT_EQ(mpObj->getGuess(), "TEST");
 }
 
 TEST_F(HangmanTest, lose){
