@@ -2,6 +2,8 @@
 FROM sophianunner/hangman:basic AS devBuild
 RUN mkdir /src
 WORKDIR /src
+# set xterm as environment variable (for playing the game on console)
+ENV TERM=xterm
 COPY CMakeLists.txt ./
 RUN mkdir main
 COPY main ./main
