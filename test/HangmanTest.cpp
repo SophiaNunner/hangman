@@ -28,12 +28,6 @@ TEST_F(HangmanTest, manualWordSpace){
     ASSERT_EQ(mpObj->getErrors(), 0);
 }
 
-TEST_F(HangmanTest, manualWordSpace){
-    ASSERT_EQ(mpObj->manualGame(" "), true);
-    ASSERT_EQ(mpObj->makeGuess(' '), false);
-    ASSERT_EQ(mpObj->getErrors(), 0);
-}
-
 TEST_F(HangmanTest, manualWordLetter){
     ASSERT_EQ(mpObj->manualGame("t"), true);
     ASSERT_EQ(mpObj->makeGuess('t'), false);
