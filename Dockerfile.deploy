@@ -7,6 +7,8 @@ RUN mkdir main
 COPY main ./main
 RUN mkdir test
 COPY test ./test
+RUN mkdir lib
+RUN cd lib && git clone https://github.com/google/googletest
 RUN ls
 RUN mkdir build
 RUN cd build && cmake ..
