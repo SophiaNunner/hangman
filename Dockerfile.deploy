@@ -14,9 +14,10 @@ RUN mkdir build
 RUN cd build && CXX="g++" cmake ..
 RUN cd build && make
 RUN ls
+CMD ["./main/Hangman"]
 
 # docker container for end-users (no source code, only running binary)
 FROM ubuntu:bionic AS cusBuild
 WORKDIR /opt/Hangman
-COPY --from=devBuild /src/main/Hangman ./
+COPY --from=devBuild main/Hangman ./
 CMD ["./Hangman"]
