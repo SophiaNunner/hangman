@@ -2,15 +2,15 @@
 FROM sophianunner/hangman:basic AS devBuild
 RUN mkdir /src
 WORKDIR /src
-RUN mkdir main
 COPY CMakeLists.txt ./
+RUN mkdir main
 COPY main ./main
+RUN mkdir test
+COPY test ./test
 RUN ls
 RUN mkdir build
 RUN cd build && cmake ..
-#RUN cmake .
-RUN make
-#RUN cmake . && make
+RUN cd build && make
 
 # docker container for end-users (no source code, only running binary)
 FROM ubuntu:bionic AS cusBuild
