@@ -2,7 +2,7 @@
 
 void HangmanTest::SetUp()
 {
-    mpObj = new Hangman();
+    mpObj = new Hangman(false);
 }
 
 void HangmanTest::TearDown()
@@ -36,7 +36,7 @@ TEST_F(HangmanTest, manualWordLetter){
 
 TEST_F(HangmanTest, manualWordLetterWrong){
     ASSERT_EQ(mpObj->manualGame("t"), true);
-    ASSERT_EQ(mpObj->makeGuess('x'), false);
+    ASSERT_EQ(mpObj->makeGuess('x'), true);
     ASSERT_EQ(mpObj->getErrors(), 1);
 }
 
@@ -58,7 +58,7 @@ TEST_F(HangmanTest, win){
     ASSERT_EQ(mpObj->manualGame("test"), true);
     ASSERT_EQ(mpObj->makeGuess('t'), true);
     ASSERT_EQ(mpObj->makeGuess('e'), true);
-    ASSERT_EQ(mpObj->makeGuess('s'), true);
+    ASSERT_EQ(mpObj->makeGuess('s'), false);
     ASSERT_EQ(mpObj->getErrors(), 0);
     ASSERT_EQ(mpObj->getGuess(), "test");
 }
@@ -77,7 +77,7 @@ TEST_F(HangmanTest, lose){
     ASSERT_EQ(mpObj->getErrors(), 4);
     ASSERT_EQ(mpObj->makeGuess('z'), true);
     ASSERT_EQ(mpObj->getErrors(), 5);
-    ASSERT_EQ(mpObj->makeGuess('u'), true);
+    ASSERT_EQ(mpObj->makeGuess('u'), false);
     ASSERT_EQ(mpObj->getErrors(), 6);
     ASSERT_EQ(mpObj->getGuess(), "____");
 }
