@@ -1,5 +1,5 @@
 # docker container for developers (includes src code)
-FROM sophianunner/hangman:basic AS devBuild
+FROM sophianunner/hangman:basic_latest AS devBuild
 RUN mkdir /src
 WORKDIR /src
 # set xterm as environment variable (for playing the game on console)
